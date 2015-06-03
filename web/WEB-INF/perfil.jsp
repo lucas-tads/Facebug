@@ -23,9 +23,45 @@
                 display: inline-block;
             }
         </style>
+
         <script type="text/javascript">
             function validarPerfil() {
-                // implementar validação do formulário de perfil
+                var nome = document.perfil.nome.value;
+                var sobrenome = document.perfil.sobrenome.value;
+                var nascimento = document.perfil.nascimento.value;
+                var email = document.perfil.email.value;
+                var senha = document.perfil.senha.value;
+
+                if (!validaTexto(nome)) {
+                    alert(ano);
+                    document.perfil.nome.focus();
+                    return false;
+                }
+
+                if (!validaTexto(sobrenome)) {
+                    alert("O campo Nome deve ter no mínimo 1 caractere.");
+                    document.perfil.sobrenome.focus();
+                    return false;
+                }
+
+                var anoAtual = new Date().getFullYear();
+                if (!validaData(nascimento, 1900, anoAtual)) {
+                    alert("A data de nascimento deve estar entre 1900 e " + anoAtual + ".");
+                    document.perfil.nascimento.focus();
+                    return false;
+                }
+
+                if (!validaEmail(email)) {
+                    alert("Digite um e-mail válido!");
+                    document.perfil.email.focus();
+                    return false;
+                }
+
+                if ((document.perfil.habilitaSenha.checked) && (!validaSenha(senha))) {
+                    alert("Senha necessita de 8 digititos no minino!");
+                    document.perfil.senha.focus();
+                    return false;
+                }
                 return true;
             }
             function habilitarDesabilitaSenha() {
@@ -100,7 +136,7 @@
                                     <% for (Postagem postagem : postagens) {%>
                                     <div class="span12 postagem" >
                                         <div class="span2">
-                                            <img src="/Facebug/imagens/perfil-padrao.jpg" class="postagem-profile-image"  />
+                                            <img src="/Facebug/Imagem?origem=usuario&id=<%=postagem.getUsuario().getId()%>" class="postagem-profile-image"  />
                                         </div>
                                         <div class="span10 postagem-nome"  >
                                             <h4><%=HtmlUtil.xss(postagem.getUsuario().getNomeCompleto())%></h4>
@@ -108,7 +144,7 @@
                                         </div>
                                         <br class="blank-line" />
                                         <hr class="bs-docs-separator blank-line" /> 
-                                        <div class="span12">
+                                        <div class="span12 postagem-box">
                                             <%=HtmlUtil.quebraLinha(HtmlUtil.xss(postagem.getTexto()))%>
                                         </div>
                                     </div>

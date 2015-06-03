@@ -30,6 +30,15 @@
                     window.location = "Timeline?acao=excluir&id=" + codigo;
                 }
             }
+             function validarPostagem() {
+                var post = document.postagem.texto.value;
+                if (!validaTexto(post)) {
+                    alert("A postagem deve ter no mínimo 1 caractere para ser publicada!");
+                    document.postagem.texto.focus();
+                    return false;
+                }
+                return true;
+            }
         </script>
     </head>
     <body>
@@ -57,7 +66,7 @@
                         </div>
                         <%}%>
                         <div class="span12 postagem-form" >
-                            <form name="postagem" method="POST" action="Timeline" class="form-inline" >
+                            <form name="postagem" method="POST" action="Timeline" class="form-inline" onsubmit="return validarPostagem();" >
                                 <% if (postagemEditar.getId() > 0) {
                                         out.write("Editando postagem " + postagemEditar.getId());
                                     }
@@ -79,7 +88,7 @@
                         <% for (Postagem postagem : postagens) {%>
                         <div class="span12 postagem" >
                             <div class="span2">
-                                <img src="/Facebug/imagens/perfil-padrao.jpg" class="postagem-profile-image"  />
+                                <img src="/Facebug/Imagem?origem=usuario&id=<%=postagem.getUsuario().getId()%>" class="postagem-profile-image"  />
                             </div>
                             <div class="span10 postagem-nome"  >
                                 <div class="btn-group" style="float: right">
@@ -94,7 +103,7 @@
                             </div>
                             <br class="blank-line" />
                             <hr class="bs-docs-separator blank-line" /> 
-                            <div class="span12">
+                            <div class="span12  postagem-box">
                                 <%=HtmlUtil.quebraLinha(HtmlUtil.xss(postagem.getTexto()))%>
                             </div>
                         </div>

@@ -8,9 +8,11 @@ body {
 }
 .navbar-profile-image{
     height: 40px;
+    width: 40px;
 }
 .nav-list-profile-image{
     height: 100px;
+    width: 100px;
 }
 .navbar-logo-image {
     padding: 0px;
@@ -37,26 +39,36 @@ body {
 }
 .div-menu {
     width: 194px !important;
+    word-wrap: break-word;
 }
 .postagem {
     background-color: white !important; 
     padding: 20px !important;
     margin: 0px !important;
+    word-wrap: break-word;
 }
 .postagem-form {
     margin: 0px !important;
 }
 .postagem-profile-image {
     height: 50px !important;
+    width: 50px;
     float: left;
+    word-wrap: break-word;
 }
 .postagem-data {
     float: right;
+    word-wrap: break-word;
 }
 .postagem-nome {
     margin: 0px !important;
+    word-wrap: break-word;
 }
 .postagem-nome h4 {
     margin: 0px !important;
     margin-bottom: 10px !important;
+    word-wrap: break-word;
+}
+.postagem-box {
+    word-wrap: break-word;
 }
